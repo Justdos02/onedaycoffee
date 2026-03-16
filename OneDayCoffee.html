@@ -3,68 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Day Coffee Application</title>
-    <link id="theme-stylesheet" rel="stylesheet" href="light-theme.css">
-    <script defer src="app.js"></script>
+    <title>One Day Coffee</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>One Day Coffee</h1>
+        <h1>One Day Coffee Application</h1>
         <button id="theme-toggle">Toggle Dark/Light Theme</button>
     </header>
     <main>
+        <section id="costing-module">
+            <h2>Costing Module</h2>
+            <!-- Costing logic goes here -->
+        </section>
         <section id="sales-tracking">
             <h2>Sales Tracking</h2>
-            <div id="sales-data"></div>
+            <!-- Sales tracking logic and charts go here -->
         </section>
         <section id="inventory-management">
             <h2>Inventory Management</h2>
-            <div id="inventory-data"></div>
+            <!-- Inventory management logic goes here -->
         </section>
         <section id="expense-logging">
             <h2>Expense Logging</h2>
-            <div id="expense-data"></div>
+            <!-- Expense logging logic goes here -->
         </section>
         <section id="staff-management">
             <h2>Staff Management</h2>
-            <div id="staff-data"></div>
+            <!-- Staff management logic goes here -->
         </section>
         <section id="order-queue">
-            <h2>Order Queue System</h2>
-            <div id="order-queue-data"></div>
+            <h2>Order Queue</h2>
+            <!-- Order queue logic goes here -->
         </section>
         <section id="drink-photos">
             <h2>Drink Photos</h2>
-            <div id="photo-gallery"></div>
+            <!-- Photos upload and display logic goes here -->
+        </section>
+        <section id="recipe-duplication">
+            <h2>Recipe Duplication</h2>
+            <!-- Recipe duplication logic goes here -->
         </section>
         <section id="quick-sell-buttons">
-            <h2>Quick Sell Buttons</h2>
-            <button class="quick-sell">Buy Coffee</button>
-            <button class="quick-sell">Buy Tea</button>
+            <h2>Quick-Sell Buttons</h2>
+            <!-- Quick-sell buttons logic goes here -->
         </section>
-        <section id="charts">
-            <h2>Line Charts</h2>
-            <canvas id="sales-chart"></canvas>
+        <section id="line-charts">
+            <h2>Sales Trends</h2>
+            <canvas id="salesChart"></canvas>
         </section>
-        <section id="calendar">
+        <section id="calendar-view">
             <h2>Calendar View</h2>
-            <div id="calendar-view"></div>
+            <!-- Calendar view logic goes here -->
         </section>
         <section id="goal-tracking">
             <h2>Goal Tracking</h2>
-            <div id="goal-data"></div>
+            <!-- Goal tracking logic goes here -->
         </section>
     </main>
     <footer>
-        <p>&copy; 2026 One Day Coffee Application</p>
+        <p>Current Date: <span id="current-date"></span></p>
+        <script src="script.js"></script>
     </footer>
-    <script>
-        document.getElementById('theme-toggle').addEventListener('click', function() {
-            const themeStylesheet = document.getElementById('theme-stylesheet');
-            themeStylesheet.href = themeStylesheet.href.includes('light') ? 'dark-theme.css' : 'light-theme.css';
-        });
-
-        // LocalStorage persistence and other functionality...
-    </script>
 </body>
 </html>
+
+<script>
+    // Theme Toggle Script
+    const body = document.body;
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+    });
+
+    // Local Storage Persistence
+    window.onload = () => {
+        const currentDate = new Date();
+        document.getElementById('current-date').textContent = currentDate.toUTCString();
+        const theme = localStorage.getItem('theme');
+        if (theme) {
+            body.classList.add(theme);
+        }
+    };
+    window.onbeforeunload = () => {
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark-theme' : '');
+    };
+</script>
